@@ -4,6 +4,14 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  theme: {
+    extend: {
+      colors: 
+      {
+        "red": '#830109'
+      }
+    },
+  },
   daisyui: {
     themes: [
       {
@@ -17,6 +25,7 @@ export default {
           "success": "#80ced1",
           "warning": "#efd8bd",
           "error": "#e58b8b",
+          
         },
         fontFamily: {
           'poppins': ['Poppins', 'sans-serif'],

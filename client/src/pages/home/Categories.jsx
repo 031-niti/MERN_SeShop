@@ -31,13 +31,13 @@ const Categories = () => {
     <div className='section-container pb-16'>
       <div className='text-center space-y-2'>
         <p className='text-lg'>Customer favorites</p>
-        <h2 className='text-[#830109] text-4xl font-bold'>Popular Catagories</h2>
+        <h2 className='text-red text-4xl font-bold'>Popular Catagories</h2>
       </div>
       <div className='flex flex-col sm:flex-row flex-wrap gap-2 justify-around items-center mt-12'>
         {categoryItems.map((item, i) => (
           <div key={i} className="card w-72 bg-base-100 shadow-xl py-6 px-5 drop-shadow-lg border cursor-pointer hover:-translate-y-4 transition-all duration-200">
             <figure>
-              <img src={item.image} alt="Shoes" className="rounded-full w-28 h-28 p-2 bg-[#830109]" />
+              <img src={item.image} alt="Shoes" className="rounded-full w-28 h-28 p-2 bg-red" />
             </figure>
             <div className="card-body items-center text-center">
               <h2 className="card-title">{item.title}</h2>

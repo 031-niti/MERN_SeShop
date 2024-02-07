@@ -43,13 +43,13 @@ const Banner = () => {
         </div>
         <div className='md:w-1/2 space-y-5 px-4'>
           <h2 className='md:text-4xl text-4xl font-bold md:leading-snug leading-snug'>
-            Discover Uniq <span className='text-[#830109]'>Soft Swag</span>  for Every Coding Enthusiat!
+            Discover Uniq <span className='text-red'>Soft Swag</span>  for Every Coding Enthusiat!
           </h2>
           <p className="text-xl">
             Our mission: To merge fashion with functionality in the worl of 
             Software Engineering
           </p>
-          <button className='btn bg-[#830109] px-8 py-3 font-semibold text-white rounded-full'>
+          <button className='btn bg-red px-8 py-3 font-semibold text-white rounded-full'>
             Order Now
           </button>
         </div>
