@@ -47,7 +47,7 @@ const NavBar = () => {
                         </div>
                         <a className="btn btn-ghost text-xl">
                             <img src="./logo.png" alt="" className='h-12 pr-1 mx-auto' />
-                            Se Souveri Shop
+                            Se Souvenir Shop
                         </a>
                     </div>
                     <div className="navbar-center hidden lg:flex">
