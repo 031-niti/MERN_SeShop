@@ -1,14 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Prompt&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-    html {
-      font-family: "Poppins","Prompt";
-    }
+  html {
+    font-family: "Poppins", "Prompt";
   }
-  .section-container{
-    @apply max-w-screen-2xl container mx-auto xl:px-24 px-4 ;
-  }
+}
+header,
+nav {
+  z-index: 1001 !important;
+}
+.section-container {
+  @apply max-w-screen-2xl container mx-auto xl:px-24 px-4;
+}

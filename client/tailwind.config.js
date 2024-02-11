@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  //Config Custom Colors  
   theme: {
     extend: {
       colors: 
@@ -12,6 +13,7 @@ export default {
       }
     },
   },
+  //daisyui Config
   daisyui: {
     themes: [
       {

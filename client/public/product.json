@@ -1,0 +1,123 @@
+[
+    {
+      "_id": "1",
+      "name": "Binary Code T-shirt",
+      "description": "A comfortable cotton t-shirt with a stylish binary code design.",
+      "price": "25.99",
+      "image": "https://i.ebayimg.com/images/g/9eAAAOSwKp9fNHZK/s-l1600.jpg",
+      "category": "popular"
+    },
+    {
+      "_id": "2",
+      "name": "Programmer's Coffee Mug",
+      "description": "A ceramic coffee mug with witty programmer-themed prints.",
+      "price": "12.50",
+      "image": "https://i.etsystatic.com/19639181/r/il/b2b6e2/2760413311/il_794xN.2760413311_7sgj.jpg",
+      "category": "Accessories"
+    },
+    {
+      "_id": "3",
+      "name": "Coding Keyboard Keycaps",
+      "description": "Customizable keycaps for mechanical keyboards featuring coding symbols.",
+      "price": "29.99",
+      "image": "https://i.etsystatic.com/34488044/r/il/cc4a47/5038329116/il_794xN.5038329116_gum3.jpg",
+      "category": "popular"
+    },
+    {
+      "_id": "4",
+      "name": "USB Flash Drive Bracelet",
+      "description": "A stylish bracelet that doubles as a USB flash drive, perfect for tech enthusiasts.",
+      "price": "19.99",
+      "image": "https://cdn.customusb.com/img/flashdrive/flashbands/hero.1612497657.webp",
+      "category": "Accessories"
+    },
+    {
+      "_id": "5",
+      "name": "Code Ninja Hoodie",
+      "description": "Stay warm and stylish with this hoodie featuring a 'Code Ninja' print.",
+      "price": "39.99",
+      "image": "https://source.unsplash.com/random/200×200/?accessories",
+      "category": "Clothing"
+    },
+    {
+      "_id": "6",
+      "name": "Programming Socks",
+      "description": "Fun and colorful socks with programming code patterns.",
+      "price": "9.99",
+      "image": "https://m.media-amazon.com/images/I/811iH4A-hOL._AC_SL1500_.jpg",
+      "category": "popular"
+    },
+    {
+      "_id": "7",
+      "name": "Debugging Toolkit",
+      "description": "A set of essential tools for debugging software, packed in a convenient case.",
+      "price": "49.99",
+      "image": "https://source.unsplash.com/random/200×200/?gadgets",
+      "category": "Gadgets"
+    },
+    {
+      "_id": "8",
+      "name": "Geeky Desk Organizer",
+      "description": "Keep your desk tidy and organized with this geeky desk organizer.",
+      "price": "22.99",
+      "image": "https://www.sideshow.com/wp/wp-content/uploads/2022/04/space-slug-desk-organizer_star-wars_gallery_5ca6865f83ac9-990x774.jpg",
+      "category": "popular"
+    },
+    {
+      "_id": "9",
+      "name": "Code Syntax Poster",
+      "description": "Decorate your workspace with this poster featuring common code syntax.",
+      "price": "15.99",
+      "image": "https://source.unsplash.com/random/200×200/?swag",
+      "category": "Swag"
+    },
+    {
+      "_id": "10",
+      "name": "Tech Stickers Pack",
+      "description": "A collection of high-quality stickers featuring popular tech logos and symbols.",
+      "price": "8.99",
+      "image": "https://source.unsplash.com/random/200×200/?accessories",
+      "category": "popular"
+    },
+    {
+      "_id": "11",
+      "name": "Wireless Charging Pad",
+      "description": "Charge your devices wirelessly with this sleek charging pad.",
+      "price": "34.99",
+      "image": "https://source.unsplash.com/random/200×200/?accessories",
+      "category":"Gadgets"
+    },
+    {
+      "_id": "12",
+      "name": "Code-Printed Scarf",
+      "description": "A soft and warm scarf with printed code snippets, perfect for chilly coding sessions.",
+      "price": "19.99",
+      "image": "https://source.unsplash.com/random/200×200/?accessories",
+      "category": "popular"
+    },
+    {
+      "_id": "13",
+      "name": "Developer's Toolkit",
+      "description": "Essential tools and accessories for developers, neatly packed in a compact toolkit.",
+      "price": "59.99",
+      "image": "https://source.unsplash.com/random/200×200/?accessories",
+      "category": "popular"
+    },
+    {
+      "_id": "14",
+      "name": "Code-themed Mouse Pad",
+      "description": "A large mouse pad featuring a stylish design with programming code elements.",
+      "price": "14.99",
+      "image": "https://source.unsplash.com/random/200×200/?accessories",
+      "category": "Accessories"
+    },
+    {
+      "_id": "15",
+      "name": "Tech Conference Tote Bag",
+      "description": "A spacious tote bag featuring a tech conference logo, perfect for carrying your essentials.",
+      "price": "29.99",
+      "image": "https://source.unsplash.com/random/200×200/?accessories",
+      "category": "popular"
+    }
+]
+  
