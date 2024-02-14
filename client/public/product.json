@@ -118,6 +118,86 @@
       "price": "29.99",
       "image": "https://source.unsplash.com/random/200×200/?accessories",
       "category": "popular"
+    },
+    {
+      "_id": "16",
+      "name": "Code-themed Phone Case",
+      "description": "Protect your phone with this stylish case featuring a coding theme.",
+      "price": "9.99",
+      "image": "https://source.unsplash.com/random/200×200/?accessories",
+      "category": "Accessories"
+    },
+    {
+      "_id": "17",
+      "name": "Geeky Enamel Pins Set",
+      "description": "A set of enamel pins with geeky and tech-themed designs.",
+      "price": "6.99",
+      "image": "https://source.unsplash.com/random/200×200/?accessories",
+      "category": "Accessories"
+    },
+    {
+      "_id": "18",
+      "name": "Code-themed Backpack",
+      "description": "Carry your gear in style with this backpack featuring coding motifs.",
+      "price": "39.99",
+      "image": "https://source.unsplash.com/random/200×200/?accessories",
+      "category": "Accessories"
+    },
+    {
+      "_id": "19",
+      "name": "Tech-themed Keychain",
+      "description": "Add a touch of tech to your keys with this cool keychain.",
+      "price": "4.99",
+      "image": "https://source.unsplash.com/random/200×200/?accessories",
+      "category": "Accessories"
+    },
+    {
+      "_id": "20",
+      "name": "Programmer's Wallet",
+      "description": "A sleek wallet designed with programmers in mind, featuring coding patterns.",
+      "price": "19.99",
+      "image": "https://source.unsplash.com/random/200×200/?accessories",
+      "category": "Accessories"
+    },
+    {
+      "_id": "21",
+      "name": "Tech-themed Water Bottle",
+      "description": "Stay hydrated with this tech-themed water bottle, perfect for tech enthusiasts on the go.",
+      "price": "12.99",
+      "image": "https://source.unsplash.com/random/200×200/?accessories",
+      "category": "Accessories"
+    },
+    {
+      "_id": "22",
+      "name": "Coding Laptop Sleeve",
+      "description": "Protect your laptop in style with this sleeve featuring coding-inspired prints.",
+      "price": "24.99",
+      "image": "https://source.unsplash.com/random/200×200/?accessories",
+      "category": "Accessories"
+    },
+    {
+      "_id": "23",
+      "name": "Tech-themed Watch",
+      "description": "Keep track of time with this stylish watch adorned with tech motifs.",
+      "price": "29.99",
+      "image": "https://source.unsplash.com/random/200×200/?accessories",
+      "category": "Accessories"
+    },
+    {
+      "_id": "24",
+      "name": "Code-themed Desk Lamp",
+      "description": "Illuminate your workspace with this sleek desk lamp featuring code patterns.",
+      "price": "34.99",
+      "image": "https://source.unsplash.com/random/200×200/?accessories",
+      "category": "Accessories"
+    },
+    {
+      "_id": "25",
+      "name": "Programmer's Hooded Jacket",
+      "description": "Stay warm and stylish with this hooded jacket featuring programming-related designs.",
+      "price": "49.99",
+      "image": "https://source.unsplash.com/random/200×200/?accessories",
+      "category": "Clothing"
     }
 ]
   

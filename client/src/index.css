@@ -16,3 +16,7 @@ nav {
 .section-container {
   @apply max-w-screen-2xl container mx-auto xl:px-24 px-4;
 }
+
+.active{
+  @apply text-red;
+}
