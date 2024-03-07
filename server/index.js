@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const productRouter = require("./routes/product.router")
+const cartRouter = require("./routes/cart.router")
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDefinition = {
@@ -67,6 +68,7 @@ app.get('/', (req, res) => {
 
 //router
 app.use("/products", productRouter)
+app.use("/carts", cartRouter)
 
 app.listen(PORT, () => {
     console.log("Server is running on http://localhost:" + PORT);

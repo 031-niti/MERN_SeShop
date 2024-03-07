@@ -147,7 +147,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-
 //updateProducts
 /**
  * @swagger
