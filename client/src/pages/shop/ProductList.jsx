@@ -20,7 +20,6 @@ const ProductList = () => {
             } catch (error) {
                 console.log("Error fetching data : ", error);
             }
-
         };
         fetchData();
     }, [])
