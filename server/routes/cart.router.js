@@ -78,7 +78,7 @@ router.get("/", async (req, res) => {
     }
 })
 
-//get by id
+//get by email
 /**
  * @swagger
  * /carts/{email}:
