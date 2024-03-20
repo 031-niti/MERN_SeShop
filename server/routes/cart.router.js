@@ -159,7 +159,7 @@ router.post('/', async (req, res) => {
             return res.status(200).json(existingCart);
         }
         //new Create
-        const newCart = new CartModel(cart);
+        const newCart = new CartModel(req.body);
         await newCart.save();
         res.status(201).json(newCart);
     } catch (error) {
