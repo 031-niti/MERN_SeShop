@@ -1,57 +1,93 @@
-import axios from 'axios'
-import React, { useState, useEffect, useContext } from 'react'
-import { AuthContext } from '../../context/AuthProvider'
+import axios from 'axios';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../context/AuthProvider';
 import Swal from 'sweetalert2';
+import useCart from '../../hook/useCart'
 
 const Cart = () => {
+    const [cart, refetch] = useCart();
     const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(true);
     const { user } = useContext(AuthContext);
+    
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchCartItems = async () => {
             try {
-                const response = await fetch("http://localhost:4000/carts")
-                const data = await response.json();
-                setItems(data);
-
+                const res = await axios.get("http://localhost:4000/carts");
+                setItems(res.data);
+                setLoading(false);
             } catch (error) {
-                console.log("Error fetching data : ", error);
+                console.error("Error fetching cart items:", error);
+                setLoading(false);
             }
         };
-        fetchData();
-    }, [])
-    const itemCount = items.reduce((total, currentItem) => total + 1, 0);
-    const totalPrice = items.reduce((total, currentItem) => total + (currentItem.price * currentItem.quantity), 0).toFixed(3)
+
+        fetchCartItems();
+    }, []);
+
+    // handleDelete
     const handleDelete = (_id) => {
-        try {
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    axios.delete(`http://localhost:4000/carts/${_id}`)
-                        .then((response) => {
-                            if (response.status === 200) {
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: "Your file has been deleted.",
-                                    icon: "success",
-                                    confirmButtonText: "OK",
-                                    confirmButtonColor: "#3085d6",
-                                });
-                            }
-                        })
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await axios.delete(`http://localhost:4000/carts/${_id}`);
+                    if (response.status === 200) {
+                        setItems(items.filter(item => item._id !== _id));
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success",
+                            confirmButtonText: "OK",
+                            confirmButtonColor: "#3085d6",
+                        });
+                        refetch();
+                    }
+                } catch (error) {
+                    console.error("Error deleting item:", error);
                 }
+            }
+        });
+    };
+    // handleIncreaseQuantity
+    const handleIncreaseQuantity = async (index) => {
+        try {
+            const updatedItem = { ...items[index], quantity: items[index].quantity + 1 };
+            const response = await axios.put(`http://localhost:4000/carts/${updatedItem._id}`, updatedItem);
+            setItems(prevState => {
+                const newItems = [...prevState];
+                newItems[index] = response.data;
+                return newItems;
             });
         } catch (error) {
             console.log(error);
         }
     };
+    // handleDecreaseQuantity
+    const handleDecreaseQuantity = async (index) => {
+        try {
+            const updatedItem = { ...items[index], quantity: items[index].quantity - 1 };
+            const response = await axios.put(`http://localhost:4000/carts/${updatedItem._id}`, updatedItem);
+            setItems(prevState => {
+                const newItems = [...prevState];
+                newItems[index] = response.data;
+                return newItems;
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const itemCount = items.reduce((total, currentItem) => total + 1, 0);
+    const totalPrice = items.reduce((total, currentItem) => total + (currentItem.price * currentItem.quantity), 0).toFixed(2)
 
+    if (loading) return <div>Loading...</div>;
 
     return (
         <div className='section-container bg-gradient-to-r from-[#FAFAFA] from-0% to-[#FCFCFC] to-100%'>
@@ -85,9 +121,9 @@ const Cart = () => {
                                                 <td>{item.name}</td>
                                                 <td>
                                                     <div className="join">
-                                                        <button className="join-item btn">-</button>
+                                                        <button className="join-item btn" onClick={() => handleDecreaseQuantity(index)} disabled={item.quantity === 0}>-</button>
                                                         <input type="number" className="join-item input w-16 text-center focus:outline-none right-0 border-none" value={item.quantity} />
-                                                        <button className="join-item btn">+</button>
+                                                        <button className="join-item btn" onClick={() => handleIncreaseQuantity(index)}>+</button>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -112,9 +148,13 @@ const Cart = () => {
                         <div className='flex mt-14'>
                             <div className="w-1/2 space-y-4">
                                 <h4 className='font-semibold text-xl'>Customer Details</h4>
-                                <p>Name:</p>
-                                <p>Email: niti2003s@gmail.com</p>
-                                <p>User_id:</p>
+                                {user && (
+                                    <>
+                                        <p>Name: {user.displayName}</p>
+                                        <p>Email: {user.email}</p>
+                                        <p>User_id: {user.uid}</p>
+                                    </>
+                                )}
                             </div>
                             <div className="w-1/2 space-y-4">
                                 <h4 className='font-semibold text-xl'>Shopping Detrails</h4>

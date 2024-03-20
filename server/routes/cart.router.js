@@ -257,7 +257,7 @@ router.delete('/:id', async (req, res) => {
 //deleteAll
 /**
  * @swagger
- * /carts/{email}:
+ * /carts/clear/{email}:
  *   delete:
  *     summary: Delete All Carts
  *     tags: [Cart Item]

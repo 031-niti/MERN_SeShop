@@ -3,8 +3,10 @@ import React, { useState, useContext } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../context/AuthProvider'
 import Swal from 'sweetalert2';
+import useCart from '../hook/useCart'
 
 const Card = ({ item }) => {
+    const [cart, refetch] = useCart();  
     const { _id, name, image, price, description } = item;
     const { user } = useContext(AuthContext);
     const location = useLocation();
@@ -25,7 +27,7 @@ const Card = ({ item }) => {
         if (user && user.email) {
             axios.post(`http://localhost:4000/carts`, cartItem)
                 .then((response) => {
-                    if (response.status === 201 || response.status === 200) {
+                    if (response) {
                         Swal.fire({
                             title: "Product added on the cart",
                             position: "center",
@@ -33,6 +35,7 @@ const Card = ({ item }) => {
                             showConfirmButton: false,
                             timer: 1500
                         });
+                        refetch();
                     }
                 });
         } else {
