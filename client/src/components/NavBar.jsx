@@ -78,7 +78,7 @@ const NavBar = () => {
                             </button>
                         }
                     </div>
-                    <Modal name="login" />
+                    <Modal nameModal="login" />
                 </div>
             </div>
         </header >

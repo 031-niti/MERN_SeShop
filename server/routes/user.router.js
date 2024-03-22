@@ -4,7 +4,6 @@ const UserModel = require("../models/User.model");
 const verifyToken = require("../middlewares/verifyToken");
 const verifyAdmin = require("../middlewares/verifyAdmin");
 
-
 // get
 router.get("/", async (req, res) => {
     try {
@@ -95,7 +94,7 @@ router.get("/admin/:email", async (req, res) => {
 })
 
 // Change Admin to User Role
-router.patch("/user/:id", verifyToken, verifyAdmin, async (req, res) => {
+router.patch("/user/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const updatedUser = await UserModel.findByIdAndUpdate(

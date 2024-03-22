@@ -8,11 +8,12 @@ import { FaUserCheck } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaLocationArrow } from "react-icons/fa";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
+import useAdmin from '../hook/useAdmin';
 
 const DashboardLayout = () => {
-    const isAdmin = true;
+    const [isAdmin, isAdminLoading] = useAdmin();
+    // const isAdmin = false;
     return (
-
         <div>
             {isAdmin ? (
                 <div className="drawer lg:drawer-open">

@@ -11,8 +11,6 @@ import DashboardLayout from '../src/layout/DashboardLayout';
 import User from '../src/pages/dashboard/admin/User';
 import Dashboard from '../src/pages/dashboard/admin/Dashboard';
 
-
-
 const router = createBrowserRouter([
     {
         path: "/",
@@ -39,15 +37,19 @@ const router = createBrowserRouter([
     },
     {
         path: "dashboard",
-        element: <DashboardLayout />,
+        element:
+            <PrivateRouter>
+                <DashboardLayout />
+            </PrivateRouter>,
         children: [
             {
-                path: "user",
+                path: "users",
                 element: <User />
             },
             {
                 path: "",
-                element: <Dashboard/>
+                element:
+                    <Dashboard />
             }
         ]
     },
