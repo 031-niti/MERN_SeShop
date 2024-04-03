@@ -1,10 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import Modal from './Modal'
 import { AuthContext } from '../context/AuthProvider'
 import Profile from './Profile'
+import axios from 'axios'
+import useCart from '../hook/useCart'
+import { Link } from 'react-router-dom'
 
 const NavBar = () => {
     const { user, setUser, createrUser } = useContext(AuthContext);
+    const [cart, refetch] = useCart();  
+    
     const navItems = (
         <>
             <li>
@@ -64,12 +69,12 @@ const NavBar = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                         </button>
                         <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-                            <div class="indicator">
+                            <a href='/carts' class="indicator">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                <span class="badge badge-sm indicator-item">8</span>
-                            </div>
+                                <span class="badge badge-sm indicator-item">{cart.length || 0}</span>
+                            </a>
                         </div>
-                        {user ? (<><Profile user={user}/></>) :
+                        {user ? (<><Profile user={user} /></>) :
                             <button className="btn bg-red text-white rounded-full px-5 flex items-center gap-2" onClick={() => document.getElementById("login").showModal()}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
@@ -78,7 +83,7 @@ const NavBar = () => {
                             </button>
                         }
                     </div>
-                    <Modal nameModal="login" />
+                    <Modal name="login" />
                 </div>
             </div>
         </header >

@@ -18,7 +18,7 @@ const DashboardLayout = () => {
             {isAdmin ? (
                 <div className="drawer lg:drawer-open">
                     <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                    <div className="drawer-content flex flex-col items-center justify-center">
+                    <div className="drawer-content flex flex-col container mx-auto my-10">
                         {/* Page content here */}
                         <div className='flex items-center justify-between mx-4'>
                             <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
@@ -56,20 +56,20 @@ const DashboardLayout = () => {
 
                             </li>
                             <li>
-                                <Link>
+                                <Link to="/dashboard/add-product-item">
                                     <IoIosAddCircle />
                                     Add Product
                                 </Link>
 
                             </li>
                             <li>
-                                <Link>
+                                <Link to="/dashboard/all-product-items">
                                     <BiSolidDashboard />
                                     Manage Item
                                 </Link>
                             </li>
                             <li>
-                                <Link>
+                                <Link to="/dashboard/users">
                                     <FaUserCheck />
                                     All Users
                                 </Link>

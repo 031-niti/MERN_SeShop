@@ -10,6 +10,10 @@ import PrivateRouter from '../src/PrivateRouter/PrivateRouter';
 import DashboardLayout from '../src/layout/DashboardLayout';
 import User from '../src/pages/dashboard/admin/User';
 import Dashboard from '../src/pages/dashboard/admin/Dashboard';
+import AddProductItem from '../src/pages/dashboard/admin/AddProductItem';
+import AllProductItems from '../src/pages/dashboard/admin/AllProductItems';
+import UpdateItem from '../src/pages/dashboard/admin/UpdateItem';
+import Cart from '../src/pages/cart/Cart';
 
 const router = createBrowserRouter([
     {
@@ -32,6 +36,10 @@ const router = createBrowserRouter([
             {
                 path: "/update-profile",
                 element: <UpdataProfile />,
+            },
+            {
+                path: "/carts",
+                element: <Cart />,
             }
         ],
     },
@@ -45,6 +53,18 @@ const router = createBrowserRouter([
             {
                 path: "users",
                 element: <User />
+            },
+            {
+                path: "add-product-item",
+                element: <AddProductItem />
+            },
+            {
+                path: "all-product-items",
+                element: <AllProductItems />
+            },
+            {
+                path: "update-item/:id",
+                element: <UpdateItem />
             },
             {
                 path: "",

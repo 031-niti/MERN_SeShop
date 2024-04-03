@@ -84,12 +84,12 @@ const User = () => {
     }
   };
   return (
-    <div>
+    <div >
       <div className='flex justify-between m-4'>
         <h2 className='text-2xl'>All Users:</h2>
         <h2 className='text-2xl'>Total Users: {users.length} </h2>
       </div>
-      <div>
+      <div className='flex flex-col justify-center items-center'>
         <div className="overflow-x-auto">
           <table className="table table-zebra md:w-[870px] text-center">
             {/* head */}
