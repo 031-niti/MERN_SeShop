@@ -11,7 +11,7 @@ const Profile = ({ user }) => {
     }
     return (
         <div>
-            <div className="drawer drawer-end z-10">
+            <div className="drawer drawer-end z-40">
                 <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                     <label htmlFor="my-drawer-4" className='drawer-button btn btn-ghost btn-circle avatar'>

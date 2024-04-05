@@ -7,7 +7,7 @@ import SignUp from '../src/components/SignUp';
 import SignIn from '../src/components/SignIn';
 import UpdataProfile from '../src/pages/dashboard/UpdataProfile';
 import PrivateRouter from '../src/PrivateRouter/PrivateRouter';
-
+import Cart from '../src/pages/cart/Cart';
 
 const router = createBrowserRouter([
     {
@@ -30,6 +30,10 @@ const router = createBrowserRouter([
             {
                 path: "/update-profile",
                 element: <UpdataProfile />,
+            },
+            {
+                path: "/carts",
+                element: <Cart />,
             }
         ],
     },
