@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form"
 import { AuthContext } from '../context/AuthProvider';
@@ -7,6 +7,9 @@ import { AuthContext } from '../context/AuthProvider';
 
 const Modal = ({ name }) => {
     const { login, signUpWithPopup } = useContext(AuthContext)
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location?.state?.from?.pathname || "/";
     const {
         register,
         handleSubmit,
@@ -16,8 +19,10 @@ const Modal = ({ name }) => {
         login(data.email, data.password)
             .then((reslt) => {
                 const user = reslt.user;
-                console.log(user);
+                // console.log(user);
                 alert("Login Successful")
+                document.getElementById(name).close();
+                navigate(from, { replace: true });
             })
             .catch((error) => {
                 console.log(error);
@@ -27,7 +32,6 @@ const Modal = ({ name }) => {
         signUpWithPopup()
             .then((reslt) => {
                 const user = reslt.user;
-                console.log(user);
                 alert("Google SignUp Successfully")
                 document.getElementById("login").close();
             })
@@ -64,7 +68,7 @@ const Modal = ({ name }) => {
                     <div className='text-center'>
                         <p>
                             Don't have an account?{' '}
-                            <Link to="#" className='text-red'>
+                            <Link to="/signup" className='text-red'>
                                 Signup Now
                             </Link>
                         </p>

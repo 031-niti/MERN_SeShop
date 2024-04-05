@@ -5,6 +5,10 @@ import Home from '../src/pages/home/Home';
 import ProductList from '../src/pages/shop/ProductList';
 import SignUp from '../src/components/SignUp';
 import SignIn from '../src/components/SignIn';
+import UpdataProfile from '../src/pages/dashboard/UpdataProfile';
+import PrivateRouter from '../src/PrivateRouter/PrivateRouter';
+
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -16,17 +20,26 @@ const router = createBrowserRouter([
             },
             {
                 path: "/shop",
-                element: <ProductList />,
+                element:
+                    <PrivateRouter>
+                        <ProductList />
+                    </PrivateRouter>
+                ,
+            }
+            ,
+            {
+                path: "/update-profile",
+                element: <UpdataProfile />,
             }
         ],
     },
     {
         path: "/signup",
         element: <SignUp />
-    }, 
+    },
     {
         path: "/signin",
-        element: <SignIn/>
+        element: <SignIn />
     }
 ]);
 

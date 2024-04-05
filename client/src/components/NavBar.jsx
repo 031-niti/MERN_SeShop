@@ -1,20 +1,20 @@
 import React, { useContext } from 'react'
 import Modal from './Modal'
 import { AuthContext } from '../context/AuthProvider'
+import Profile from './Profile'
 
 const NavBar = () => {
-    const {user,setUser} = useContext(AuthContext);
-    console.log(user);
+    const { user, setUser, createrUser } = useContext(AuthContext);
     const navItems = (
         <>
             <li>
-                <a>Home</a>
+                <a href='/'>Home</a>
             </li>
             <li tabIndex={0}>
                 <details>
                     <summary>Categories</summary>
                     <ul className="p-2">
-                        <li><a>All</a></li>
+                        <li><a href='/shop'>All</a></li>
                         <li><a>Clothing</a></li>
                         <li><a>Accessories</a></li>
                         <li><a>Gadgets</a></li>
@@ -59,7 +59,7 @@ const NavBar = () => {
                             {navItems}
                         </ul>
                     </div>
-                    <div className="navbar-end space-x-2 ">
+                    <div className="navbar-end px-4 space-x-2">
                         <button className="btn btn-ghost btn-circle">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                         </button>
@@ -69,14 +69,16 @@ const NavBar = () => {
                                 <span class="badge badge-sm indicator-item">8</span>
                             </div>
                         </div>
-                        <button className="btn bg-red text-white rounded-full px-5 flex items-center gap-2" onClick={() => document.getElementById("login").showModal()}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                            </svg>
-                            Login
-                        </button>
+                        {user ? (<><Profile user={user}/></>) :
+                            <button className="btn bg-red text-white rounded-full px-5 flex items-center gap-2" onClick={() => document.getElementById("login").showModal()}>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                </svg>
+                                Login
+                            </button>
+                        }
                     </div>
-                    <Modal name="login"/>
+                    <Modal name="login" />
                 </div>
             </div>
         </header >
