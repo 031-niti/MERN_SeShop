@@ -1,11 +1,14 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form"
-import { AuthContext } from '../context/AuthProvider';
+import useAuth from '../hook/useAuth';
+import useAxiosPublic from '../hook/useAxiosPublic';
+import Swal from "sweetalert2"
 
 const SignUp = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile, signUpWithPopup } = useAuth();
+    const axiosPublic = useAxiosPublic();
     const location = useLocation();
     const navigate = useNavigate();
     const from = location?.state?.from?.pathname || "/";
@@ -20,8 +23,46 @@ const SignUp = () => {
             .then((reslt) => {
                 const user = reslt.user;
                 console.log(user);
+                updateUserProfile(data.name, data.photoURL).then(() => {
+                    const userInfo = {
+                        name: data.name,
+                        email: data.email,
+                    };
+                    axiosPublic.post("/users", userInfo).then((response) => {
+                        console.log(response);
+                        Swal.fire({
+                            title: "Account created Successfully",
+                            icon: "success",
+                            timer: 1500,
+                        })
+                        navigate(from, { replace: true })
+                    })
+                })
                 alert("Account create Successful");
                 navigate(from, { replace: true });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+    const googleSignUp = () => {
+        signUpWithPopup()
+            .then((reslt) => {
+                const user = reslt.user;
+                const userInfo = {
+                    name: reslt.user?.displayName,
+                    email: reslt.user?.email,
+                    photoURL: reslt.user?.photoURL,
+                };
+                axiosPublic.post("/users", userInfo).then((response) => {
+                    console.log(response);
+                    Swal.fire({
+                        title: "Google Sign Up Successfully",
+                        icon: "success",
+                        timer: 1500,
+                    })
+                    navigate(from, { replace: true })
+                })
             })
             .catch((error) => {
                 console.log(error);
@@ -32,6 +73,12 @@ const SignUp = () => {
             <form onSubmit={handleSubmit(onSubmit)} >
                 <div className='border w-[30rem] py-10 px-16 rounded-xl shadow-xl drop-shadow'>
                     <h3 className="font-bold text-xl">Create An Account</h3>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Name</span>
+                        </label>
+                        <input type="Name" placeholder="Name" className="input input-bordered" {...register("name")} />
+                    </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Email</span>
@@ -59,7 +106,7 @@ const SignUp = () => {
                         </p>
                     </div>
                     <div className='flex justify-center mt-6 space-x-2 '>
-                        <button className='btn btn-circle hover:bg-red hover:text-white duration-700'>
+                        <button className='btn btn-circle hover:bg-red hover:text-white duration-700' onClick={googleSignUp}>
                             <FaGoogle />
                         </button>
                         <button className='btn btn-circle hover:bg-red hover:text-white duration-700'>

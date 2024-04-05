@@ -2,8 +2,10 @@ import { useContext, createContext, useState, useEffect } from 'react';
 export const AuthContext = createContext();
 import app from '../firebase/firebase.config';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
+import useAxiosPbulic from '../hook/useAxiosPublic';
 
 const AuthProvider = ({ children }) => {
+    const axiosPublic = useAxiosPbulic();
     // Initialize Firebase Authentication and get a reference to the service
     const auth = getAuth(app);
     const [user, setUser] = useState(null);
@@ -47,13 +49,21 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
             if (currentUser) {
-                setUser(currentUser);
+                const userInfo = { email: currentUser.email }
+                axiosPublic.post("/jwt", userInfo).then((response) => {
+                    if (response.data.token) {
+                        localStorage.setItem("access_token", response.data.token)
+                    }
+                })
+            }
+            else {
+                localStorage.removeItem("access_token")
             }
         });
         return () => {
             return unsubscribe();
         }
-    }, [auth])
+    }, [axiosPublic])
 
     return (
         <AuthContext.Provider value={authInfo}>

@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const productRouter = require("./routes/product.router")
 const cartRouter = require("./routes/cart.router")
+const userRouter = require("./routes/user.router")
+const jwt = require("jsonwebtoken")
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDefinition = {
@@ -66,8 +68,8 @@ app.use(cors({ credentials: true, origin: CLIENT_URL }));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-app.get('/swagger.json', (req,res)=>{
-  res.header("Content-Type","application/josn");
+app.get('/swagger.json', (req, res) => {
+  res.header("Content-Type", "application/josn");
   res.send(swaggerSpec);
 })
 
@@ -78,6 +80,16 @@ app.get('/', (req, res) => {
 //router
 app.use("/products", productRouter)
 app.use("/carts", cartRouter)
+app.use("/users", userRouter)
+
+app.post("/jwt", async (req, res) => {
+  // create and return JWT
+  const user = req.body;
+  const token = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET,{
+    expiresIn :"1h"
+})
+res.send({ token })
+})
 
 app.listen(PORT, () => {
   console.log("Server is running on http://localhost:" + PORT);

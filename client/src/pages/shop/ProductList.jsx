@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../../components/Card'
+import useAxiosPbulic from '../../hook/useAxiosPublic';
 
 const ProductList = () => {
+    const axiosPublic = useAxiosPbulic();
     const [products, setProducts] = useState([]);
     const [filteredItems, setFilteredItems] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("all");
@@ -12,11 +14,10 @@ const ProductList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:4000/products")
-                const data = await response.json();
-                setProducts(data);
-                setFilteredItems(data);
-                setCategories(["all", ...new Set(data.map((item) => item.category))])
+                const response = await axiosPublic.get("/products")
+                setProducts(response.data);
+                setFilteredItems(response.data);
+                setCategories(["all", ...new Set(response.data.map((item) => item.category))])
             } catch (error) {
                 console.log("Error fetching data : ", error);
             }
@@ -53,6 +54,7 @@ const ProductList = () => {
         setFilteredItems(sortedItems);
         setCurrentPage(1);
     }
+
     const sliceProducts = () => {
         const startIndex = (currentPage - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;

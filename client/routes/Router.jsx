@@ -38,6 +38,36 @@ const router = createBrowserRouter([
         ],
     },
     {
+        path: "dashboard",
+        element:
+            <PrivateRouter>
+                <DashboardLayout />
+            </PrivateRouter>,
+        children: [
+            {
+                path: "users",
+                element: <User />
+            },
+            {
+                path: "add-product-item",
+                element: <AddProductItem />
+            },
+            {
+                path: "all-product-items",
+                element: <AllProductItems />
+            },
+            {
+                path: "update-item/:id",
+                element: <UpdateItem />
+            },
+            {
+                path: "",
+                element:
+                    <Dashboard />
+            }
+        ]
+    },
+    {
         path: "/signup",
         element: <SignUp />
     },
