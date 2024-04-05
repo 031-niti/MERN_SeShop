@@ -4,17 +4,18 @@ import { AuthContext } from '../../context/AuthProvider';
 import Swal from 'sweetalert2';
 import useCart from '../../hook/useCart'
 
-
 const Cart = () => {
     const [cart, refetch] = useCart();
     const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(true);
     const { user } = useContext(AuthContext);
-
+    
     useEffect(() => {
         const fetchCartItems = async () => {
             try {
                 const res = await axios.get("http://localhost:4000/carts");
                 setItems(res.data);
+                setLoading(false);
             } catch (error) {
                 console.error("Error fetching cart items:", error);
                 setLoading(false);
@@ -23,8 +24,8 @@ const Cart = () => {
 
         fetchCartItems();
     }, []);
-    const itemCount = items.reduce((total, currentItem) => total + 1, 0);
-    const totalPrice = items.reduce((total, currentItem) => total + (currentItem.price * currentItem.quantity), 0).toFixed(2)
+
+    // handleDelete
     const handleDelete = (_id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -55,7 +56,7 @@ const Cart = () => {
             }
         });
     };
-
+    // handleIncreaseQuantity
     const handleIncreaseQuantity = async (index) => {
         try {
             const updatedItem = { ...items[index], quantity: items[index].quantity + 1 };
@@ -83,6 +84,10 @@ const Cart = () => {
             console.log(error);
         }
     };
+    const itemCount = items.reduce((total, currentItem) => total + 1, 0);
+    const totalPrice = items.reduce((total, currentItem) => total + (currentItem.price * currentItem.quantity), 0).toFixed(2)
+
+    if (loading) return <div>Loading...</div>;
 
     return (
         <div className='section-container bg-gradient-to-r from-[#FAFAFA] from-0% to-[#FCFCFC] to-100%'>
@@ -115,7 +120,7 @@ const Cart = () => {
                                                 </td>
                                                 <td>{item.name}</td>
                                                 <td>
-                                                <div className="join">
+                                                    <div className="join">
                                                         <button className="join-item btn" onClick={() => handleDecreaseQuantity(index)} disabled={item.quantity === 0}>-</button>
                                                         <input type="number" className="join-item input w-16 text-center focus:outline-none right-0 border-none" value={item.quantity} />
                                                         <button className="join-item btn" onClick={() => handleIncreaseQuantity(index)}>+</button>
